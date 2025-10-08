@@ -33,6 +33,8 @@ pytest tests
 
 ## Usage
 
+### Options
+
 ```bash
 usage: products-parser [-h] [-f FILES [FILES ...]] [-r REPORT [REPORT ...]]
 
@@ -45,3 +47,9 @@ options:
   -r, --report REPORT [REPORT ...]
                         report type
 ```
+
+### How to add new report
+
+You can add new report as a function in the `reports.py` file. It will be automatically parsed and then you can use it by passing report name as an argument.
+
+**Note:** report function name must start with the `report` keyword. Also `report` keyword will be deleted after parsing and underscores will be replaced with dashes (e.g. `report_average_rating` will be `average-rating`, `report_average_price` will be `average-price` etc).
