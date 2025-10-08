@@ -13,7 +13,7 @@ Create and enter virtual environment
 python3 -m venv env && source ./env/bin/activate
 ```
 
-Install required dependencies
+In `app` folder install required dependencies
 
 ```bash
 pip install .
@@ -29,6 +29,12 @@ Run tests
 
 ```bash
 pytest tests
+```
+
+Get coverage
+
+```bash
+pytest --cov=app tests
 ```
 
 ## Usage
