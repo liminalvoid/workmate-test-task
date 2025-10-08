@@ -1,7 +1,7 @@
 import csv
 import argparse
 
-import reports
+import app.reports
 
 from inspect import getmembers, isfunction
 from sys import argv
@@ -9,7 +9,7 @@ from sys import argv
 from app.utils import Table
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         prog="products-parser",
         description="Parses CSV and produces reports about some products",
@@ -37,7 +37,7 @@ if __name__ == "__main__":
                 [data.append(row) for row in list(reader)[1:]]
 
     reports = getmembers(
-        reports,
+        app.reports,
         lambda item: isfunction(item) and item.__name__.startswith("report")
     )
     reports = {
@@ -47,3 +47,7 @@ if __name__ == "__main__":
 
     for report in args.report:
         print(reports[report](data))
+
+
+if __name__ == "__main__":
+    main()
