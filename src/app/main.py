@@ -9,6 +9,34 @@ from sys import argv
 from app.utils import Table
 
 
+def read_csv(filepaths):
+    data: Table = []
+
+    for filepath in filepaths:
+        with open(filepath) as csv_file:
+            reader = csv.reader(csv_file)
+
+            if len(data) == 0:
+                [data.append(row) for row in reader]
+            else:
+                [data.append(row) for row in list(reader)[1:]]
+
+    return data
+
+
+def get_reports():
+    reports = getmembers(
+        app.reports,
+        lambda item: isfunction(item) and item.__name__.startswith("report")
+    )
+    reports = {
+        name.replace("report", "").replace("_", "-")[1:]: func
+        for (name, func) in reports
+    }
+
+    return reports
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="products-parser",
@@ -25,25 +53,9 @@ def main():
 
         exit()
 
-    data: Table = []
+    data: Table = read_csv(args.files)
 
-    for filepath in args.files:
-        with open(filepath) as csv_file:
-            reader = csv.reader(csv_file)
-
-            if len(data) == 0:
-                [data.append(row) for row in reader]
-            else:
-                [data.append(row) for row in list(reader)[1:]]
-
-    reports = getmembers(
-        app.reports,
-        lambda item: isfunction(item) and item.__name__.startswith("report")
-    )
-    reports = {
-        name.replace("report", "").replace("_", "-")[1:]: func
-        for (name, func) in reports
-    }
+    reports = get_reports()
 
     for report in args.report:
         print(reports[report](data))
