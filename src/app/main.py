@@ -1,5 +1,6 @@
 import csv
 import argparse
+import os
 
 import app.reports
 
@@ -13,7 +14,9 @@ def read_csv(filepaths):
     data: Table = []
 
     for filepath in filepaths:
-        with open(filepath) as csv_file:
+        abs_filepath = os.path.abspath(filepath)
+
+        with open(abs_filepath) as csv_file:
             reader = csv.reader(csv_file)
 
             if len(data) == 0:
