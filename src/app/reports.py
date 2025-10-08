@@ -1,6 +1,6 @@
 from tabulate import tabulate
 
-from utils import Table, get_average
+from app.utils import Table, get_average
 
 
 def report_average_rating(data: Table) -> str:

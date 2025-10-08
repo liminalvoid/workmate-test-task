@@ -6,7 +6,7 @@ import reports
 from inspect import getmembers, isfunction
 from sys import argv
 
-from utils import Table
+from app.utils import Table
 
 
 if __name__ == "__main__":
