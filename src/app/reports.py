@@ -9,7 +9,10 @@ def report_average_rating(data: Table) -> str:
     result: Table = [["", group_by, aggregation_column]]
 
     hashmap = get_average(data, group_by, aggregation_column)
-    hashmap_sorted = dict(sorted(hashmap.items(), key=lambda item: item[1])[::-1])
+    hashmap_sorted = dict(sorted(
+        hashmap.items(),
+        key=lambda item: item[1]
+    )[::-1])
     idx = 1
 
     for key, value in hashmap_sorted.items():
@@ -33,7 +36,10 @@ def report_average_price(data: Table) -> str:
     result: Table = [["", group_by, aggregation_column]]
 
     hashmap = get_average(data, group_by, aggregation_column)
-    hashmap_sorted = dict(sorted(hashmap.items(), key=lambda item: item[1])[::-1])
+    hashmap_sorted = dict(sorted(
+        hashmap.items(),
+        key=lambda item: item[1]
+    )[::-1])
     idx = 1
 
     for key, value in hashmap_sorted.items():
