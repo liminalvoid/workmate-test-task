@@ -8,7 +8,6 @@ def get_average(
     data: Table,
     group_by: str,
     aggregation_column: str,
-    sort=True,
 ) -> dict[str, list[float | int]]:
     hashmap = {}
 

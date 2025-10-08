@@ -16,13 +16,19 @@ python3 -m venv env && source ./env/bin/activate
 Install required dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install .
 ```
 
 Run script
 
 ```bash
-python3 main.py -f ../data/products1.csv ../data/products2.csv -r average-rating average-price
+python3 main.py -f ../../data/products1.csv ../../data/products2.csv -r average-rating average-price
+```
+
+Run tests
+
+```bash
+pytest tests
 ```
 
 ## Usage
